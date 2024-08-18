@@ -48,5 +48,21 @@ console.log("User Category:", userCategory);
 let isAuthenticated = true;
 let authenticationStatus = isAuthenticated ?
     "Authenticated" : "Not authenticated";
-    
+
 console.log("Authentication Status:", authenticationStatus);
+
+let companyRole = "employee";
+
+switch(companyRole){
+    case "employee":
+        console.log(`Employee is eligible for "Dietary Services"`);
+        break;
+    case "enrolled member":
+        console.log(`Members have access to "Dietary Services" and one-on-one interactions with dietician`);
+        break;
+    case "suscriber":
+        console.log(`Suscribers have partial access to "Dietary Services"`);
+        break;
+    default:
+        console.log("Please enroll or suscribe first to avail this facility")
+}
