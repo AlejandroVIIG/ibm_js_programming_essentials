@@ -3,11 +3,18 @@ function showWeatherDetails(event) {
 
     const city = document.getElementById('city').value;
     const apiKey = '46d914decc02f487e9a767e277b79b62'; // Replace 'YOUR_API_KEY' with your actual API key
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    
+    const lat = document.getElementById("lat").value;
+    const long = document.getElementById("long").value;
+    let apiUrl;
+    if(city){
+        apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    } else {
+        apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${apiKey}`;
+    }
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         const weatherInfo = document.getElementById('weatherInfo');
         weatherInfo.innerHTML = `<h2>Weather in ${data.name}</h2>
                                 <p>Temperature: ${data.main.temp} &#8451;</p>
@@ -22,4 +29,7 @@ function showWeatherDetails(event) {
 
  document.getElementById('weatherForm').addEventListener(
     'submit',showWeatherDetails );
+
+document.getElementById("coord_weather_form").addEventListener(
+    'submit', showWeatherDetails);
 
